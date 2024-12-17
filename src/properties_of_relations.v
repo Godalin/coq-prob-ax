@@ -1,9 +1,9 @@
 Require Import Coq.Classes.RelationClasses.
 
-Require Import utils.
-Require Import syntax.
-Require Import relations.
-Require Import integration.
+From ProbAx Require Import utils.
+From ProbAx Require Import syntax.
+From ProbAx Require Import relations.
+From ProbAx Require Import integration.
 
 (** * Symmetry *)
 

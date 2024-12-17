@@ -1,13 +1,13 @@
 (** In this file, we define contexts, contextual equivalence, and show that the
     logical relation [related_exprs] is sound with respect to contextual
     equivalence. *)
-Require Import utils.
-Require Import syntax.
-Require Import relations.
-Require Import properties_of_relations.
+From ProbAx Require Import utils.
+From ProbAx Require Import syntax.
+From ProbAx Require Import relations.
+From ProbAx Require Import properties_of_relations.
+From ProbAx Require Export chain.
 Require Import Coq.micromega.Lia.
 Require Import Coq.Lists.List.
-Require Export chain.
 
 (** * Contexts
 

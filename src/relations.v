@@ -3,11 +3,11 @@
 Require Import Coq.Reals.Reals.
 Require Import Coq.Relations.Relations.
 
-Require Import utils.
-Require Import syntax.
-Require Import integration.
+From ProbAx Require Import utils.
+From ProbAx Require Import syntax.
+From ProbAx Require Import integration.
 
-Require determinism.
+From ProbAx Require determinism.
 Import determinism.eval_dec.
 
 Local Open Scope ennr.

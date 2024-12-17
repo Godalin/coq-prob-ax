@@ -9,10 +9,11 @@
 
 Require Import Coq.Program.Basics.
 Require Import Coq.Reals.Reals.
-Require Import Coq.fourier.Fourier.
 Require Import Coq.setoid_ring.Ring_theory.
 Require Import Coq.Logic.ProofIrrelevance.
+Require Import Lra.
 
+Declare Scope ennr_scope.
 Delimit Scope ennr_scope with ennr.
 
 Local Open Scope R.
@@ -30,7 +31,7 @@ Notation "R+" := ennr : type_scope.
     through the genererous help of [proof_irrelevance]. It would probably be
     possible to prove the important results without relying on proof
     irrelevance, but it simplifies things greatly here. *)
-Lemma finite_inj r0 r0_pos r1 r1_pos :
+Lemma finite_inj {r0 r0_pos r1 r1_pos} :
   r0 = r1 ->
   finite r0 r0_pos = finite r1 r1_pos.
 Proof.
@@ -39,7 +40,7 @@ Proof.
   f_equal.
   apply proof_irrelevance.
 Qed.
-Hint Immediate finite_inj.
+Hint Immediate finite_inj : proba_hint.
 Ltac Finite := apply finite_inj; try solve [cbn; ring].
 
 (** * [ennr] is a semiring *)
@@ -90,7 +91,7 @@ Proof.
   destruct n; simpl; auto.
   - Finite.
   - destruct Req_EM_T; simpl; auto.
-    fourier.
+    lra.
 Qed.
 
 Lemma ennr_mul_0_l : forall n, 0 * n = 0.

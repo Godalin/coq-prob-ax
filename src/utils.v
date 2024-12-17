@@ -8,7 +8,8 @@ Require Export Coq.Program.Equality.
 Require Export Coq.Program.Tactics.
 Require Export Ring.
 Require Export Coq.Classes.Morphisms.
-Require Export ennr.
+
+From ProbAx Require Export ennr.
 
 Export EqNotations.
 Open Scope ennr.

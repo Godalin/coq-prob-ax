@@ -2,8 +2,8 @@
     integral. It ignores all issues of measurability, but otherwise attempts to
     only axiomatize well-known results in analysis and measure theory. *)
 
-Require Import utils.
-Require Import entropy.
+From ProbAx Require Import utils.
+From ProbAx Require Import entropy.
 Require Import Coq.Classes.Morphisms.
 Require Import Coq.Relations.Relations.
 
@@ -104,7 +104,7 @@ Axiom meas_bind_assoc : forall {A B C} (μ : Meas A) (f : A -> Meas B) (g : B ->
 Inductive KnownToBeSigmaFinite : forall {A}, Meas A -> Prop :=
 | ent_finite : KnownToBeSigmaFinite μEntropy
 | leb_finite : KnownToBeSigmaFinite lebesgue_pos_measure.
-Hint Constructors KnownToBeSigmaFinite.
+Hint Constructors KnownToBeSigmaFinite : proba.
 
 (** We axiomitize Tonelli's theorem for all combinations of the two measures
     listed above. *)

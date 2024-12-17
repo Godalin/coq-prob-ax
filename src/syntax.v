@@ -1,10 +1,10 @@
 Require Import Coq.Reals.Reals.
 Require Export Coq.Lists.List.
 
-Require Export Autosubst.Autosubst.
+From Autosubst Require Export Autosubst.
 
-Require Import utils.
-Require Export entropy.
+From ProbAx Require Import utils.
+From ProbAx Require Export entropy.
 
 
 Local Open Scope ennr.

@@ -10,8 +10,8 @@
 Require Import Coq.Reals.Reals.
 Require Import Coq.Lists.List.
 
-Require Import utils.
-Require Import syntax.
+From ProbAx Require Import utils.
+From ProbAx Require Import syntax.
 
 Local Open Scope ennr.
 
@@ -46,8 +46,8 @@ Fixpoint dV_rel τ : val τ -> Type :=
   | (τa ~> τr) => @dV_rel_arrow _ _ (dV_rel τa) (dV_rel τr)
   end.
 
-Hint Unfold dV_rel dV_rel_real.
-Hint Constructors dV_rel_arrow.
+Hint Unfold dV_rel dV_rel_real : proba_hint.
+Hint Constructors dV_rel_arrow : proba_hint.
 
 Definition dE_rel τ := dE_rel' τ (dV_rel τ).
 

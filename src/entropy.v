@@ -7,7 +7,8 @@
     many indepent parts, as (π 0 σ), (π 1 σ), ... *)
 
 Require Import Reals.
-Require Import utils.
+Require Import Arith.
+From ProbAx Require Import utils.
 
 Local Open Scope R.
 
@@ -62,6 +63,8 @@ Proof.
   apply Nat.div2_succ_double.
 Qed.
 
+Search (Nat.double).
+
 Lemma join_πL_πR σ : join (πL σ) (πR σ) = σ.
 Proof.
   extensionality n.
@@ -71,8 +74,7 @@ Proof.
 
     f_equal.
     fold (Nat.double (Nat.div2 n)).
-    rewrite <- Div2.even_double; auto.
-    apply Even.even_equiv; auto.
+    rewrite <- Nat.Even_double; auto.
   } {
     pose proof (proj2 (Nat.odd_spec n) H).
     rewrite <- Nat.negb_even in H0.
@@ -81,8 +83,7 @@ Proof.
 
     f_equal.
     change (S (Nat.double (Nat.div2 n)) = n).
-    rewrite <- Div2.odd_double; auto.
-    apply Even.odd_equiv; auto.
+    rewrite <- Nat.Odd_double; auto.
   }
 Qed.
 

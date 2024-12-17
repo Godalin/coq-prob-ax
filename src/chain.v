@@ -106,6 +106,11 @@ Definition bichain_cons {X Y} {P : X -> Y -> X -> Y -> Type} {xA yA xB yB xC yC}
 (* Note to self: get more creative with notation *)
 Infix "::::" := bichain_cons (at level 60, right associativity).
 
+Definition prod_curry {X Y Z} (F : X -> Y -> Z) (p : X * Y) : Z :=
+  match p with
+  | (x, y) => F x y
+  end.
+
 Definition bichain_fold_right {X Y} {P : X -> Y -> X -> Y -> Type}
            {F : X -> Y -> Type}
            (f : forall {xA yA xB yB}, P xA yA xB yB -> F xB yB -> F xA yA)
