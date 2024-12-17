@@ -20,7 +20,7 @@
 (package
  (name coq-proba-ax)
  (synopsis "axioms for probabilistic constructions")
- (version 0.1)
+ (version 0.2)
  (depends
   (coq
    (>= 8.18))))
