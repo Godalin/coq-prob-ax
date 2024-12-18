@@ -3,4 +3,4 @@
 (coq.theory
  (name ProbAx)
  (package coq-proba-ax)
- (theories Autosubst))
+ (theories Autosubst ExtLib))

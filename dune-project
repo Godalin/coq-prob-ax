@@ -23,4 +23,6 @@
  (version 0.2)
  (depends
   (coq
-   (>= 8.18))))
+   (>= 8.18))
+  (coq-ext-lib
+   (>= 0.0))))

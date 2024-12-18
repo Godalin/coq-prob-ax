@@ -7,7 +7,7 @@
     This file lifts several useful definitions and theorems from [R], and proves
     that [ennr] forms a semiring so that the [ring] tactic will apply. *)
 
-Require Import Coq.Program.Basics.
+From Coq Require Import Program.
 Require Import Coq.Reals.Reals.
 Require Import Coq.setoid_ring.Ring_theory.
 Require Import Coq.Logic.ProofIrrelevance.
@@ -194,3 +194,15 @@ Proof.
   destruct a, b; simpl; auto.
   apply Rgt_dec.
 Qed.
+
+
+
+(** extract real from ennr *)
+
+Definition to_R (e : ennr) : R + unit :=
+  match e with
+  | finite r _ => inl r
+  | infinite => inr ()
+  end.
+
+Check to_R.

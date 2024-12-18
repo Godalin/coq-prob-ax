@@ -11,6 +11,7 @@ From ProbAx Require determinism.
 Import determinism.eval_dec.
 
 Local Open Scope ennr.
+Local Open Scope meas_scope.
 
 (** * The value measure [μ_e] *)
 

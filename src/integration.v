@@ -7,6 +7,11 @@ From ProbAx Require Import entropy.
 Require Import Coq.Classes.Morphisms.
 Require Import Coq.Relations.Relations.
 
+From ExtLib Require Import Structures.Monads.
+
+Declare Scope meas_scope.
+Local Open Scope meas_scope.
+
 (** * Definitions *)
 
 (** Using [bool] instead of [Prop] for the definition of an event is a little
@@ -90,13 +95,7 @@ Axiom integration_πL_πR : forall (g : Entropy -> Entropy -> R+),
     restriction from SRel. *)
 Definition meas_bind {A B} (μ : Meas A) (f : A -> Meas B) : Meas B :=
   fun ev => integration (fun a => f a ev) μ.
-Infix ">>=" := meas_bind (at level 20).
-
-(** This is the associativity law for SRel+. Panangaden proved this for
-    subprobabilities, but his proof makes no use of that restriction, and is
-    therefore just as good of a proof in this instance. *)
-Axiom meas_bind_assoc : forall {A B C} (μ : Meas A) (f : A -> Meas B) (g : B -> Meas C),
-  (μ >>= f) >>= g = μ >>= (fun x => f x >>= g).
+Infix ">>=" := meas_bind (at level 20) : meas_scope.
 
 (** An actual definition of σ-finite here would be more challenging than
     rewarding, so we instead simply construct a short whitelist of measures that
@@ -126,6 +125,12 @@ Definition dirac {A} (v : A) : Meas A :=
   fun e => indicator e v.
 Arguments dirac {_} _ _ /.
 
+#[global] Instance Monad_Meas : Monad Meas := {|
+  ret := @dirac;
+  bind := @meas_bind
+|}.
+
+
 Definition preimage {A B C} (f : A -> B) : (B -> C) -> (A -> C) :=
   fun eb a => eb (f a).
 Arguments preimage {_ _ _} _ _ _ /.
@@ -153,6 +158,12 @@ Definition score_meas {X} (w : X -> R+) (μ : Meas X) : Meas X :=
 Definition unif_score_meas {X} (s : R+) (μ : Meas X) : Meas X :=
   fun A => μ A * s.
 Arguments unif_score_meas {_} _ _ _ /.
+
+(** This is the associativity law for SRel+. Panangaden proved this for
+    subprobabilities, but his proof makes no use of that restriction, and is
+    therefore just as good of a proof in this instance. *)
+Axiom meas_bind_assoc : forall {A B C} (μ : Meas A) (f : A -> Meas B) (g : B -> Meas C),
+  (μ >>= f) >>= g = μ >>= (fun x => f x >>= g).
 
 
 (** ** Lemmas about integrals *)
